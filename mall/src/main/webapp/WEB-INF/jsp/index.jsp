@@ -33,7 +33,7 @@
 				<li><a href="${pageContext.request.contextPath}/member/removeMember">È¸¿ø Å»Åð</a></li>
 			</ol>
 		</c:if>
-		
+		 
 		<!-- ¼îÇÎ¸ô ¸Þ´º -->
 		<div>
 			<ol>
