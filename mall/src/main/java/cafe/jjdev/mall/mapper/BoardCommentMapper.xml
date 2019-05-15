@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="cafe.jjdev.mall.mapper.BoardCommentMapper">
+	<resultMap id="boardCommentMap" type="cafe.jjdev.mall.vo.BoardComment">
+		<result column="board_comment_no" property="boardCommentNo"/>
+		<result column="board_no" property="boardNo"/>
+		<result column="board_comment_pw" property="boardCommentPw"/>
+		<result column="board_comment_content" property="boardCommentContent"/>
+		<result column="board_comment_user" property="boardCommentUser"/>
+	</resultMap>
+
+	<delete id="deleteBoardCommentByCommentNo" parameterType="cafe.jjdev.mall.vo.BoardComment">
+		DELETE FROM board_comment
+		WHERE board_comment_no = #{boardCommentNo}
+			AND board_comment_pw = #{boardCommentPw}
+	</delete>
+
+	<delete id="deleteBoardCommentByBoardNo" parameterType="cafe.jjdev.mall.vo.BoardComment">
+		DELETE FROM board_comment
+		WHERE board_no = #{boardNo}
+	</delete>
+	
+	<select id="selectBoardCommentListByBoardNo" parameterType="int" resultMap="boardCommentMap">
+		SELECT
+			board_comment_no as boardCommentNo,
+			board_comment_pw as boardCommentPw,
+			board_comment_content as boardCommentContent,
+			board_comment_user as boardCommentUser
+		FROM board_comment
+		WHERE board_no = #{boardNo}
+	</select>
+
+	<insert id="insertBoardComment" parameterType="cafe.jjdev.mall.vo.BoardComment">
+		INSERT INTO board_comment(
+			board_no,
+			board_comment_pw,
+			board_comment_content,
+			board_comment_user
+		)
+		VALUES(
+			#{boardNo},
+			#{boardCommentPw},
+			#{boardCommentContent},
+			#{boardCommentUser}
+		)
+	</insert>
+</mapper>

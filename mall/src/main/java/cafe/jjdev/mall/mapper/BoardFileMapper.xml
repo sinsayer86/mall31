@@ -1,0 +1,71 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="cafe.jjdev.mall.mapper.BoardFileMapper">
+	<resultMap id="boardFileMap" type="cafe.jjdev.mall.vo.BoardFile">
+		<result column="board_file_no" property="boardFileNo"/>
+		<result column="board_no" property="boardNo"/>
+		<result column="board_file_origin_name" property="boardFileOriginName"/>
+		<result column="board_file_save_name" property="boardFileSaveName"/>
+		<result column="board_file_ext" property="boardFileExt"/>
+		<result column="board_file_size" property="boardFileSize"/>
+		<result column="board_file_type" property="boardFileType"/>
+	</resultMap>
+	
+	<delete id="deleteBoardFile" parameterType="int">
+		DELETE FROM board_file
+		WHERE board_no = #{boardNo}
+	</delete>
+
+	<select id="deleteBoardFileByFileNo" parameterType="map">
+		DELETE FROM board_file
+		WHERE board_file_no IN(
+			SELECT board_file_no FROM(
+				SELECT board_file_no
+				FROM board b INNER JOIN board_file bf
+				ON b.board_no = bf.board_no
+				WHERE board_file_no = #{boardFileNo} AND board_pw = #{boardPw}) temp)
+	</select>
+	
+	<select id="selectBoardFileByFileNo" parameterType="int" resultMap="boardFileMap">
+		SELECT
+			board_no as boardNo,
+			board_file_no as boardFileNo,
+			board_file_save_name as boardFileSaveName,
+			board_file_ext as boardFileExt
+		FROM board_file
+		WHERE board_file_no = #{boardFileNo}
+	</select>
+
+	<select id="selectBoardFileByFK" parameterType="int" resultMap="boardFileMap">
+		SELECT
+			board_no AS boardNo,
+			board_file_no AS boardFileNo,
+			board_file_origin_name AS boardFileOriginName,
+			board_file_save_name AS boardFileSaveName,
+			board_file_ext AS boardFileExt,
+			board_file_size AS boardFileSize
+		FROM board_file
+		WHERE board_no = #{boardNo}
+	</select>
+
+	<insert id="insertBoardFile" parameterType="cafe.jjdev.mall.vo.BoardFile">
+		INSERT INTO board_file(
+			board_no,
+			board_file_origin_name,
+			board_file_save_name,
+			board_file_ext,
+			board_file_size,
+			board_file_type
+		)
+		VALUES(
+			#{boardNo},
+			#{boardFileOriginName},
+			#{boardFileSaveName},
+			#{boardFileExt},
+			#{boardFileSize},
+			#{boardFileType}
+		)
+	</insert>
+</mapper>
