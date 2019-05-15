@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -15,26 +15,28 @@
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 	    	<h1>Index</h1>
-			<h3>¼îÇÎ¸ô ¸ÞÀÎ ÆäÀÌÁö</h3>
+			<h3>ì‡¼í•‘ëª° ë©”ì¸ íŽ˜ì´ì§€</h3>
 	 	</div>
 	</div>
 	<div class="container">
 		<c:if test="${loginMember == null}">
 			<ol>
-				<li><a href="${pageContext.request.contextPath}/member/login">·Î±×ÀÎ</a></li>
-				<li><a href="${pageContext.request.contextPath}/member/addMember">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/login">ë¡œê·¸ì¸</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/addMember">íšŒì›ê°€ìž…</a></li>
 			</ol>
 		</c:if>
 		<c:if test="${loginMember != null}">
 			${loginMember.memberName}
 			<ol>
-				<li><a href="${pageContext.request.contextPath}/member/logout">·Î±×¾Æ¿ô</a></li>
-				<li><a href="${pageContext.request.contextPath}/member/getMemberOne">³» Á¤º¸ È®ÀÎ</a></li>
-				<li><a href="${pageContext.request.contextPath}/member/removeMember">È¸¿ø Å»Åð</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/logout">ë¡œê·¸ì•„ì›ƒ</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/getMemberOne">ë‚´ ì •ë³´ í™•ì¸</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/removeMember">íšŒì› íƒˆí‡´</a></li>
 			</ol>
 		</c:if>
+		
+		
 		 
-		<!-- ¼îÇÎ¸ô ¸Þ´º -->
+		<!-- ì‡¼í•‘ëª° ë©”ë‰´ -->
 		<div>
 			<ol>
 				<c:forEach var="category" items="${categoryList}">
