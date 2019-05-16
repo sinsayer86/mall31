@@ -15,7 +15,7 @@
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 	    	<h1>Index</h1>
-			<h3>쇼핑몰 메인 페이지!??</h3>
+			<h3>쇼핑몰 메인 페이지...</h3>
 	 	</div>
 	</div>
 	<div class="container">
